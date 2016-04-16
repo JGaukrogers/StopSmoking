@@ -51,7 +51,6 @@ public class SeeStatistics extends AppCompatActivity {
 
     }
 
-    // todo: why doesn't this read the selected currency properly?
     private void getSavedPreferences(){
         SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(Settings.PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
         price = sharedPref.getFloat(Settings.PREFERENCE_PRICE, 5f);

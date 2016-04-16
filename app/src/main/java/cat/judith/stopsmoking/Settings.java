@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -19,6 +20,7 @@ public class Settings extends AppCompatActivity {
     private EditText cigsPerPacketText;
     private EditText priceText;
     private Spinner spinner;
+    private boolean first_run = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,22 +64,26 @@ public class Settings extends AppCompatActivity {
                     SharedPreferences.Editor editor = sharedPref.edit();
                     editor.putFloat(PREFERENCE_PRICE,
                             Float.valueOf(String.valueOf(priceText.getText())));
-                            //Integer.decode(String.valueOf(priceText.getText())));
                     editor.commit();
                 }
             }
         });
 
         // Save new value when picking up new currency
-        spinner.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (first_run){
+                    first_run = false;
+                }
+                else {
                     SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPref.edit();
-                    editor.putInt(PREFERENCE_CURRENCY, Integer.decode(String.valueOf(spinner.getSelectedItem().toString())));
+                    editor.putString(PREFERENCE_CURRENCY, (String.valueOf(spinner.getSelectedItem())));
                     editor.commit();
                 }
+            }
+
+            public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
     }
