@@ -15,6 +15,7 @@ import com.jjoe64.graphview.series.DataPoint;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class SeeStatistics extends AppCompatActivity {
 
@@ -34,9 +35,9 @@ public class SeeStatistics extends AppCompatActivity {
         TextView averageSmokedView = (TextView) findViewById(R.id.avgSmokedView);
 
         int totalCigsSmoked = getTotalCigarettesSmoked();
-        cigsSmokedView.setText(totalCigsSmoked + getString(R.string.cigarettesSmoked));
-        moneySmokedView.setText(getTotalMoneySmoked(totalCigsSmoked) + getString(R.string.singleSpace) + currency +getString(R.string.smoked));
-        averageSmokedView.setText(getAverageCigarettesSmoked(totalCigsSmoked) + getString(R.string.cigarettesPerDay));
+        cigsSmokedView.setText(String.format("%d%s", totalCigsSmoked, getString(R.string.cigarettesSmoked)));
+        moneySmokedView.setText(String.format("%s%s%s%s", getTotalMoneySmoked(totalCigsSmoked), getString(R.string.singleSpace), currency, getString(R.string.smoked)));
+        averageSmokedView.setText(String.format("%s%s", getAverageCigarettesSmoked(totalCigsSmoked), getString(R.string.cigarettesPerDay)));
 
         // Init. and set graph
         GraphView graph = (GraphView) findViewById(R.id.graphView);
@@ -44,7 +45,7 @@ public class SeeStatistics extends AppCompatActivity {
 
         graph.addSeries(graphCigsDay);
 
-        java.text.DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        java.text.DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
         graph.getGridLabelRenderer().setLabelFormatter(new DateAsXAxisLabelFormatter(getApplicationContext(), dateFormat));
         graph.getGridLabelRenderer().setVerticalAxisTitle("Cigarettes Smoked");
         graph.getGridLabelRenderer().setNumHorizontalLabels(3);
@@ -137,6 +138,7 @@ public class SeeStatistics extends AppCompatActivity {
         return graphCigsDay;
     }
 
+    @SuppressWarnings("deprecation")
     private Date convertToDate(int iDate){
 
 
