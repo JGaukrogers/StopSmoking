@@ -4,9 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
- * Created by judith on 13/04/16.
- */
 public class CigarettesSmokedDB extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;

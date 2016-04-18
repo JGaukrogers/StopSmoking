@@ -50,7 +50,7 @@ public class Settings extends AppCompatActivity {
                     SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPref.edit();
                     editor.putInt(PREFERENCE_NUM_CIGARETTES, Integer.decode(String.valueOf(cigsPerPacketText.getText())));
-                    editor.commit();
+                    editor.apply();
                 }
             }
         });
@@ -64,7 +64,7 @@ public class Settings extends AppCompatActivity {
                     SharedPreferences.Editor editor = sharedPref.edit();
                     editor.putFloat(PREFERENCE_PRICE,
                             Float.valueOf(String.valueOf(priceText.getText())));
-                    editor.commit();
+                    editor.apply();
                 }
             }
         });
@@ -79,7 +79,7 @@ public class Settings extends AppCompatActivity {
                     SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPref.edit();
                     editor.putString(PREFERENCE_CURRENCY, (String.valueOf(spinner.getSelectedItem())));
-                    editor.commit();
+                    editor.apply();
                 }
             }
 
