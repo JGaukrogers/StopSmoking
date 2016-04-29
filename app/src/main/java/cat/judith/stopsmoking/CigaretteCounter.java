@@ -1,6 +1,7 @@
 package cat.judith.stopsmoking;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -17,6 +18,7 @@ public class CigaretteCounter extends AppCompatActivity {
 
     private TextView numCigsView;
     private int todaysDate;
+    private static Context thisContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,7 @@ public class CigaretteCounter extends AppCompatActivity {
         setContentView(R.layout.activity_cigarette_counter);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        thisContext = getApplicationContext();
 
         numCigsView = (TextView) findViewById(R.id.numCigsText);
 
@@ -114,6 +117,16 @@ public class CigaretteCounter extends AppCompatActivity {
     public void settings(View view){
         Intent intent = new Intent(this, Settings.class);
         startActivity(intent);
+    }
+
+    public void editPastDays(View view){
+        Intent intent = new Intent(this, EditPastDaysActivity.class);
+        startActivity(intent);
+    }
+
+    public static Context getThisAppContext(){
+        return thisContext;
+
     }
 
 }

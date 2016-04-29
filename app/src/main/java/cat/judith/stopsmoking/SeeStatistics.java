@@ -53,7 +53,7 @@ public class SeeStatistics extends AppCompatActivity {
     }
 
     private void getSavedPreferences(){
-        SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(Settings.PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(CommonConstants.PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
         price = sharedPref.getFloat(Settings.PREFERENCE_PRICE, 5f);
         cigsPerPacket = sharedPref.getInt(Settings.PREFERENCE_NUM_CIGARETTES, 20);
         currency = sharedPref.getString(Settings.PREFERENCE_CURRENCY, "€");

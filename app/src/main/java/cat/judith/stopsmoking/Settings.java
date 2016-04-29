@@ -12,7 +12,6 @@ import android.widget.Spinner;
 
 public class Settings extends AppCompatActivity {
 
-    public static final String PREFERENCES_FILE_NAME = "preferences";
     public static final String PREFERENCE_PRICE = "PRICE";
     public static final String PREFERENCE_NUM_CIGARETTES = "NUM_CIGS";
     public static final String PREFERENCE_CURRENCY = "CURRENCY";
@@ -47,7 +46,7 @@ public class Settings extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
+                    SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(CommonConstants.PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPref.edit();
                     editor.putInt(PREFERENCE_NUM_CIGARETTES, Integer.decode(String.valueOf(cigsPerPacketText.getText())));
                     editor.apply();
@@ -60,7 +59,7 @@ public class Settings extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
+                    SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(CommonConstants.PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPref.edit();
                     editor.putFloat(PREFERENCE_PRICE,
                             Float.valueOf(String.valueOf(priceText.getText())));
@@ -76,7 +75,7 @@ public class Settings extends AppCompatActivity {
                     first_run = false;
                 }
                 else {
-                    SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
+                    SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(CommonConstants.PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPref.edit();
                     editor.putString(PREFERENCE_CURRENCY, (String.valueOf(spinner.getSelectedItem())));
                     editor.apply();
@@ -89,7 +88,7 @@ public class Settings extends AppCompatActivity {
     }
 
     private void getSavedPreferences(){
-        SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(Settings.PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = getApplicationContext().getSharedPreferences(CommonConstants.PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
         float price = sharedPref.getFloat(Settings.PREFERENCE_PRICE, 5f);
         int cigsPerPacket = sharedPref.getInt(Settings.PREFERENCE_NUM_CIGARETTES, 20);
         String currency = sharedPref.getString(Settings.PREFERENCE_CURRENCY, "€");
