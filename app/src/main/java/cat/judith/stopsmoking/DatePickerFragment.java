@@ -26,9 +26,8 @@ public class DatePickerFragment extends DialogFragment
         return new DatePickerDialog(getActivity(), this, year, month, day);
     }
 
-    // Todo: add a 0 for days and months > 10
     public void onDateSet(DatePicker view, int year, int month, int day) {
-        String selDate = String.valueOf(year) + String.valueOf(month+1) + String.valueOf(day);
+        String selDate =DateToString.getDateAsString(year, month, day);
 
         SharedPreferences sharedPref = CigaretteCounter.getThisAppContext().getSharedPreferences(CommonConstants.PREFERENCES_FILE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();

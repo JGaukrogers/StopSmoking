@@ -31,6 +31,11 @@ public class CigaretteCounter extends AppCompatActivity {
         numCigsView = (TextView) findViewById(R.id.numCigsText);
 
         // Look if DB has entry for today
+        displayCigarettesSmokedToday();
+    }
+
+    private void displayCigarettesSmokedToday(){
+        // Look if DB has entry for today
         CigarettesSmokedDB dbHelper = new CigarettesSmokedDB(this.getApplicationContext());
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         String[] projection = {

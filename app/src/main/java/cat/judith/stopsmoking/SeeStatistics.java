@@ -39,6 +39,7 @@ public class SeeStatistics extends AppCompatActivity {
         moneySmokedView.setText(String.format("%s%s%s%s", getTotalMoneySmoked(totalCigsSmoked), getString(R.string.singleSpace), currency, getString(R.string.smoked)));
         averageSmokedView.setText(String.format("%s%s", getAverageCigarettesSmoked(totalCigsSmoked), getString(R.string.cigarettesPerDay)));
 
+        // Todo: for some reason, the graph representation is broken since I implemented the EditPastDaysActivity
         // Init. and set graph
         GraphView graph = (GraphView) findViewById(R.id.graphView);
         BarGraphSeries<DataPoint> graphCigsDay = getCigsPerDayPoints();
@@ -138,7 +139,6 @@ public class SeeStatistics extends AppCompatActivity {
         return graphCigsDay;
     }
 
-    @SuppressWarnings("deprecation")
     private Date convertToDate(int iDate){
 
 
