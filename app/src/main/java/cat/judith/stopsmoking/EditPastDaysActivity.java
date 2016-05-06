@@ -108,7 +108,7 @@ public class EditPastDaysActivity extends AppCompatActivity {
         newFragment.show(getFragmentManager(), "date picker");
 
         // otherwise, we can only refresh the date once
-        forceRefresh(v);
+        //forceRefresh(v);
     }
 
     // Refresh with cigarettes smoked on selected date
@@ -121,7 +121,6 @@ public class EditPastDaysActivity extends AppCompatActivity {
     }
 
     public void updateNewValue(View view) {
-        // Todo: save new non-negative number
         String newValueS = String.valueOf(cigsOnDateView.getText());
         int newValue = Integer.decode(newValueS);
         CigarettesSmokedDB dbHelper = new CigarettesSmokedDB(getApplicationContext());
